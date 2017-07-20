@@ -1,0 +1,97 @@
+#!/usr/bin/env lua
+
+local lex = require "lex.lex"
+local snt = require "snt.snt"
+local sem = require "sem.sem"
+local cgn = require "cgn.cgn"
+
+local tokens, lerrors = lex.scan(arg[1])
+
+if #lerrors > 0 then -- if there are lerrors print them and quit
+     for i = 1, #lerrors do print(lerrors[i]) end 
+     return 1;
+end
+
+--[[
+for i = 1, #tokens do
+     if tokens[i][2] == "TK_LF" then -- only for better formating
+          print("\\n", tokens[i][2])
+     else
+          print(tokens[i][1], tokens[i][2])
+     end
+end
+--]]
+
+local stl, serrors = snt.parse(tokens)
+
+local smerrors
+tokens, smerrors = sem.check(stl, tokens)
+
+--[[
+for i = 1, #tokens do
+     print(tokens[i][1], tokens[i][2])
+end
+--]]
+
+local asscode = cgn.to_asm(stl, tokens)
+
+local f = assert(io.open(arg[2] .. ".s", "w"))
+
+f:write(asscode)
+f:close()
+
+os.execute("gcc " .. arg[2] .. ".s -o " .. arg[2])
+-- os.execute("as " .. arg[2] .. ".s -o " .. arg[2] .. ".o")
+-- os.execute("ld " .. arg[2] .. ".o -o " .. arg[2])
+
+--[[
+f:write(".section .data\n\n" ..
+        ".section .text\n" ..
+        ".globl _start\n" ..
+        "_start:\n\n" ..
+        "movl $1, %eax\n" ..
+        "movl $10, %ebx\n\n" ..
+        "int $0x80\n")
+
+f:close()
+-- os.execute("as " .. arg[2] .. ".s -o " .. arg[2] .. ".o")
+-- os.execute("ld " .. arg[2] .. ".o -o " .. arg[2])
+
+if stl then -- prints symbol tables
+     for f, t in pairs(stl) do
+          -- {{ head section
+          io.write(f[1], " (")
+          for _, pt in pairs(t.head.parm) do
+               io.write(pt[1][1] .. ": " .. pt[2][1])
+               io.write(", ")
+          end
+          io.write(")")
+          io.write("-> ", t.head.tp[1], "\n")
+          print("~~~")
+          -- }}
+
+          -- {{ body section
+          print("variables:")
+          for id, tp in pairs(t.body) do
+               print("   " .. tp[1][1] .. ": " .. id[1])
+          end
+          -- }}
+
+          -- {{ call section
+          print("calls:")
+          for id, al in pairs(t.call) do
+               io.write("   " .. id[1] .. "(")
+               for i = 1, #al[1] do io.write(al[1][i][1] .. ", ") end
+               print(")")
+          end
+          -- }}
+          print("labels:")
+          for i = 1, #t.jump do
+               print("   " .. t.jump[i][1])
+          end
+          -- {{ call section
+          -- }}
+          print("================================")
+     end
+end
+--]]

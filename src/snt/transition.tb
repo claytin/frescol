@@ -1,0 +1,273 @@
+State { ["id"] = 'program'
+      , ["TK_FKW"] = 1 }
+
+State { ["id"] = 'gprefix'
+      , ["TK_FKW"] = 2 }
+
+State { ["id"] = 'functions'
+      , ["TK_ID"] = 3, ["TK_MAIN"] = 4 }
+
+State { ["id"] = 'somefun'
+      , ["TK_ID"] = 5 }
+
+State { ["id"] = 'main'
+      , ["TK_MAIN"] = 6 }
+
+State { ["id"] = 'parlst'
+      , ["TK_OP"] = 7 }
+
+State { ["id"] = 'facpl'
+      , ["TK_TSTRG"] = 8, ["TK_TNUMB"] = 8, ["TK_TBOOL"] = 8
+
+      , ["TK_CP"] = 9 }
+
+State { ["id"] = 'parms'
+      , ["TK_TSTRG"] = 10, ["TK_TNUMB"] = 10, ["TK_TBOOL"] = 10 }
+
+State { ["id"] = 'facparm'
+      , ["TK_CM"] = 11
+
+      , ["TK_CP"] = 12 }
+
+State { ["id"] = 'posfun'
+      , ["TK_TSTRG"] = 13, ["TK_TNUMB"] = 13, ["TK_TBOOL"] = 13
+      , ["TK_INP"]   = 13, ["TK_ID"]    = 13, ["TK_JMP"]   = 13
+      , ["TK_IF"]    = 13, ["TK_WHILE"] = 13, ["TK_CASE"]  = 13
+      , ["TK_RET"]   = 13, ["TK_FOR"]   = 13, ["TK_OUT"]   = 13
+      , ["TK_REP"]   = 13, ["TK_LBL"]   = 13, ["TK_LF"]    = 13 }
+
+State { ["id"] = 'stmts'
+      , ["TK_TSTRG"] = 14, ["TK_TNUMB"] = 14, ["TK_TBOOL"] = 14
+      , ["TK_INP"]   = 14, ["TK_ID"]    = 14, ["TK_JMP"]   = 14
+      , ["TK_IF"]    = 14, ["TK_WHILE"] = 14, ["TK_CASE"]  = 14
+      , ["TK_FOR"]   = 14, ["TK_OUT"]   = 14, ["TK_REP"]   = 14
+      , ["TK_LBL"]   = 14
+
+      , ["TK_LF"] = 15
+
+      , ["TK_RET"] = 16 }
+
+State { ["id"] = "stmts'"
+      , ["TK_TSTRG"] = 17, ["TK_TNUMB"] = 17, ["TK_TBOOL"] = 17
+      , ["TK_INP"]   = 17, ["TK_ID"]    = 17, ["TK_JMP"]   = 17
+      , ["TK_IF"]    = 17, ["TK_WHILE"] = 17, ["TK_CASE"]  = 17
+      , ["TK_FOR"]   = 17, ["TK_OUT"]   = 17, ["TK_REP"]   = 17
+      , ["TK_LBL"]   = 17, ["TK_RET"]   = 17, ["TK_LF"]    = 17
+
+      , ["TK_END"] = 18 }
+
+State { ["id"] = 'stmt'
+      , ["TK_ID"]    = 19
+      , ["TK_TSTRG"] = 20, ["TK_TNUMB"] = 20, ["TK_TBOOL"] = 20
+      , ["TK_INP"]   = 21
+      , ["TK_OUT"]   = 22
+      , ["TK_JMP"]   = 23
+      , ["TK_LBL"]   = 24
+      , ["TK_IF"]    = 25
+      , ["TK_FOR"]   = 26
+      , ["TK_WHILE"] = 27
+      , ["TK_REP"]   = 28
+      , ["TK_CASE"]  = 29 }
+
+State { ["id"] = 'fstmts'
+      , ["TK_TSTRG"] = 30, ["TK_TNUMB"] = 30, ["TK_TBOOL"] = 30
+      , ["TK_INP"]   = 30, ["TK_ID"]    = 30, ["TK_JMP"]   = 30
+      , ["TK_IF"]    = 30, ["TK_WHILE"] = 30, ["TK_CASE"]  = 30
+      , ["TK_FOR"]   = 30, ["TK_OUT"]   = 30, ["TK_REP"]   = 30
+      , ["TK_LBL"]   = 30, ["TK_RET"]   = 30
+
+      , ["TK_LF"] = 31 }
+
+State { ["id"] = 'facfstmt'
+      , ["TK_TSTRG"] = 32, ["TK_TNUMB"] = 32, ["TK_TBOOL"] = 32
+      , ["TK_INP"]   = 32, ["TK_ID"]    = 32, ["TK_JMP"]   = 32
+      , ["TK_IF"]    = 32, ["TK_WHILE"] = 32, ["TK_CASE"]  = 32
+      , ["TK_FOR"]   = 32, ["TK_OUT"]   = 32, ["TK_REP"]   = 32
+      , ["TK_LBL"]   = 32, ["TK_RET"]   = 32, ["TK_LF"]    = 32
+
+      , ["TK_END"] = 33, ["TK_UNTIL"] = 33, ["TK_ELSE"] = 33}
+
+State { ["id"] = 'fstmt'
+      , ["TK_ID"]    = 34
+      , ["TK_TSTRG"] = 35, ["TK_TNUMB"] = 35, ["TK_TBOOL"] = 35
+      , ["TK_INP"]   = 36
+      , ["TK_OUT"]   = 37
+      , ["TK_RET"]   = 38
+      , ["TK_JMP"]   = 39
+      , ["TK_LBL"]   = 40
+      , ["TK_IF"]    = 41
+      , ["TK_FOR"]   = 42
+      , ["TK_WHILE"] = 43
+      , ["TK_REP"]   = 44
+      , ["TK_CASE"]  = 45 }
+
+State { ["id"] = 'fcorass'
+      , ["TK_ID"] = 46 }
+
+State { ["id"] = 'tailfoa'
+      , ["TK_ASS"] = 47
+
+      , ["TK_OP"] = 48 }
+
+State { ["id"] = 'declare'
+      , ["TK_TSTRG"] = 49, ["TK_TNUMB"] = 49, ["TK_TBOOL"] = 49 }
+
+State { ["id"] = 'lstida'
+      , ["TK_ID"] = 50 }
+
+State { ["id"] = 'headlida'
+      , ["TK_ID"] = 51 }
+
+State { ["id"] = 'taillida'
+      , ["TK_ASS"] = 52
+
+      , ["TK_LF"] = 53, ["TK_CM"] = 53 }
+
+State { ["id"] = 'faclstida'
+      , ["TK_CM"] = 54
+
+      , ["TK_LF"] = 55 }
+
+State { ["id"] = 'input'
+      , ["TK_INP"] = 56 }
+
+State { ["id"] = 'output'
+      , ["TK_OUT"] = 57 }
+
+State { ["id"] = 'return'
+      , ["TK_RET"] = 58 }
+
+State { ["id"] = 'jmp'
+      , ["TK_JMP"] = 59 }
+
+State { ["id"] = 'label'
+      , ["TK_LBL"] = 60 }
+
+State { ["id"] = 'preif'
+      , ["TK_IF"] = 61 }
+
+State { ["id"] = 'posif'
+      , ["TK_ELSE"] = 62
+      , ["TK_END"]  = 63 }
+
+State { ["id"] = 'prefor'
+      , ["TK_FOR"] = 64 }
+
+State { ["id"] = 'posfor'
+      , ["TK_CM"] = 65
+      , ["TK_DO"] = 66 }
+
+State { ["id"] = 'lvar'
+      , ["TK_ID"]   = 67
+      , ["TK_NUMB"] = 68 }
+
+State { ["id"] = 'while'
+      , ["TK_WHILE"] = 69 }
+
+State { ["id"] = 'repeat'
+      , ["TK_REP"] = 70 }
+
+State { ["id"] = 'precase'
+      , ["TK_CASE"] = 71 }
+
+State { ["id"] = 'poscase'
+      , ["TK_ELSE"] = 72
+      , ["TK_END"]  = 73 }
+
+State { ["id"] = 'whens'
+      , ["TK_WHEN"] = 74 }
+
+State { ["id"] = 'facwhen'
+      , ["TK_WHEN"] = 75
+
+      , ["TK_ELSE"] = 76, ["TK_END"] = 76 }
+
+State { ["id"] = 'when'
+      , ["TK_WHEN"] = 77 }
+
+State { ["id"] = 'expr'
+      , ["TK_ID"] = 78, ["TK_STRG"] = 78, ["TK_NUMB"] = 78, ["TK_BOOL"] = 78
+
+      , ["TK_OP"] = 79
+
+      , ["TK_SUB"] = 80, ["TK_NOT"] = 80 }
+
+State { ["id"] = "expr'"
+      , ["TK_ADD"] = 81, ["TK_SUB"] = 81, ["TK_MUL"] = 81, ["TK_DIV"] = 81
+      , ["TK_EQ"]  = 81, ["TK_NE"]  = 81, ["TK_LT"]  = 81, ["TK_GT"]  = 81
+      , ["TK_LE"]  = 81, ["TK_GE"]  = 81, ["TK_AND"] = 81, ["TK_OR"]  = 81
+
+      , ["TK_CP"] = 82, ["TK_THEN"] = 82, ["TK_END"] = 82, ["TK_DO"] = 82
+      , ["TK_LF"] = 82, ["TK_CM"]   = 82 }
+
+State { ["id"] = 'headexpr'
+      , ["TK_NUMB"] = 83
+      , ["TK_STRG"] = 84
+      , ["TK_BOOL"] = 85
+      , ["TK_ID"]   = 86 }
+
+State { ["id"] = 'tailexpr'
+      , ["TK_OP"] = 87
+
+      , ["TK_ADD"] = 88, ["TK_SUB"]  = 88, ["TK_MUL"] = 88, ["TK_DIV"] = 88
+      , ["TK_EQ"]  = 88, ["TK_NE"]   = 88, ["TK_LT"]  = 88, ["TK_GT"]  = 88
+      , ["TK_LE"]  = 88, ["TK_GE"]   = 88, ["TK_AND"] = 88, ["TK_OR"]  = 88
+      , ["TK_CP"]  = 88, ["TK_THEN"] = 88, ["TK_END"] = 88, ["TK_DO"]  = 88
+      , ["TK_LF"]  = 88, ["TK_CM"]   = 88 }
+
+State { ["id"] = 'arglst'
+      , ["TK_OP"] = 89 }
+
+State { ["id"] = 'facal'
+      , ["TK_ID"] = 90, ["TK_STRG"] = 90, ["TK_NUMB"] = 90, ["TK_BOOL"] = 90
+
+      , ["TK_CP"] = 91 }
+
+State { ["id"] = 'args'
+      , ["TK_ID"] = 92, ["TK_STRG"] = 92, ["TK_NUMB"] = 92, ["TK_BOOL"] = 92 }
+
+State { ["id"] = 'facargs'
+      , ["TK_CM"] = 93
+
+      , ["TK_CP"] = 94 }
+
+State { ["id"] = 'bop'
+      , ["TK_ADD"] = 95
+      , ["TK_SUB"] = 96
+      , ["TK_MUL"] = 97
+      , ["TK_DIV"] = 98
+      , ["TK_EQ"]  = 99
+      , ["TK_NE"]  = 100
+      , ["TK_LT"]  = 101
+      , ["TK_GT"]  = 102
+      , ["TK_LE"]  = 103
+      , ["TK_GE"]  = 104
+      , ["TK_AND"] = 105
+      , ["TK_OR"]  = 106 }
+
+State { ["id"] = 'uop'
+      , ["TK_SUB"] = 107
+      , ["TK_NOT"] = 108 }
+
+State { ["id"] = 'literal'
+      , ["TK_ID"]   = 109
+      , ["TK_NUMB"] = 110
+      , ["TK_STRG"] = 111
+      , ["TK_BOOL"] = 112 }
+
+State { ["id"] = 'id'
+      , ["TK_ID"] = 113 }
+
+State { ["id"] = 'numb'
+      , ["TK_NUMB"] = 114 }
+
+State { ["id"] = 'strg'
+      , ["TK_STRG"] = 115 }
+
+State { ["id"] = 'bool'
+      , ["TK_BOOL"] = 116 }
+
+State { ["id"] = 'type'
+      , ["TK_TSTRG"] = 117
+      , ["TK_TNUMB"] = 118
+      , ["TK_TBOOL"] = 119 }

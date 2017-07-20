@@ -1,0 +1,84 @@
+(* alphabet *)
+S = { [a-zA-Z], [0-9], \n, \_, \?, \., \,, \=, \~, \+, \-, \*, \/, \<, \>, \(
+    , \), \", \', \! }
+
+(* comments are not classified, still here follows the re *)
+comment = ![\s\S]*
+
+(* some sugar *)
+letter = [a-zA-Z]
+digit  = [0-9]
+
+(* literals *)
+TK_ID    = \_*letter(letter|\_|digit)+\??
+TK_STRG  = strg
+TK_NUMB  = numb
+TK_BOOL  = bool
+TK_NUMB  = \-?digit+(\.digit+)?
+TK_FALSE = true
+TK_TRUE  = false
+TK_STRG  = \"[\s\S]+\"|\'[\s\S]\' (* any printable ascii char, scape sequences
+                                   * may be necessary *)
+
+(* block misc *)
+TK_LF  = \n
+TK_END = end
+
+(*
+TK_OP = \(
+TK_CP  = \)
+TK_CMM = \,
+
+(* -------------------------------- operators ------------------------------ *)
+(* arithmetical *)
+TK_ADD = \+
+TK_SUB = \-
+TK_MUL = \*
+TK_DIV = \/
+
+(* relational *)
+TK_EQ = \=
+TK_LT = \<
+TK_GT = \>
+TK_NE = \~\=
+TK_LE = \<\=
+TK_GE = \>\=
+
+(* logical *)
+TK_AND = and
+TK_OR  = or
+TK_NOT = \~
+
+TK_ASS = \<\- (* assign *)
+
+(* ---------------------------- reserved words -------------------------------
+ * every word in the language that is a token is reserved, therefore the
+ * following list is not complete, missing TK_TYPE, TK_BOOL, TK_AND and TK_OR
+ *)
+(* I/0 *)
+TK_INP   = read
+TK_OUT   = write
+
+(* loops *)
+TK_FOR   = for
+TK_WHILE = while
+TK_REP   = repeat
+TK_UNTIL = until
+TK_DO    = do
+
+(* conditionals *)
+TK_IF   = if
+TK_THEN = then
+TK_ELSE = else
+TK_CASE = case
+TK_WHEN = when
+
+(* inconditional *)
+TK_JMP = jmp
+TK_LBL = \.*letter(letter|\_|digit)+\??
+
+(* function related *)
+TK_FKW  = function
+TK_RET  = return
+TK_RETI = \-\>
+TK_MAIN = main

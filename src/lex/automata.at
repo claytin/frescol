@@ -1,0 +1,204 @@
+local action = require "lex/actions"
+
+State { ["id"] = 1 -- initial state
+      , ["0"] = 2, ["1"] = 2, ["2"] = 2, ["3"] = 2, ["4"] = 2, ["5"] = 2
+      , ["6"] = 2, ["7"] = 2, ["8"] = 2, ["9"] = 2
+
+      , ["a"] = 6, ["b"] = 6, ["c"] = 6, ["d"] = 6, ["e"] = 6, ["f"] = 6
+      , ["g"] = 6, ["h"] = 6, ["i"] = 6, ["j"] = 6, ["k"] = 6, ["l"] = 6
+      , ["m"] = 6, ["n"] = 6, ["o"] = 6, ["p"] = 6, ["q"] = 6, ["r"] = 6
+      , ["s"] = 6, ["t"] = 6, ["u"] = 6, ["v"] = 6, ["w"] = 6, ["x"] = 6
+      , ["y"] = 6, ["z"] = 6
+      , ["A"] = 6, ["B"] = 6, ["C"] = 6, ["D"] = 6, ["E"] = 6, ["F"] = 6
+      , ["G"] = 6, ["H"] = 6, ["I"] = 6, ["J"] = 6, ["K"] = 6, ["L"] = 6
+      , ["M"] = 6, ["N"] = 6, ["O"] = 6, ["P"] = 6, ["Q"] = 6, ["R"] = 6
+      , ["S"] = 6, ["T"] = 6, ["U"] = 6, ["V"] = 6, ["W"] = 6, ["X"] = 6
+      , ["Y"] = 6, ["Z"] = 6
+
+      , ["-"] = 3, ["+"] = 17, ["*"] = 18, ["/"] = 19
+
+      , ["_"] = 7, ["."] = 30
+
+      , ["~"] = 13, ["="] = 22, ["<"] = 10, [">"] = 15
+
+      , ["("] = 20, [")"] = 21
+
+      , [","] = 23
+
+      , ["\t"] = 24, [" "] = 24 
+
+      , ["!"] = 26, ["\""] = 27
+
+      , ["\n"] = 32
+
+      , ["action"] = action.err }
+
+State { ["id"] = 2 -- final state wich recognizes integer numbers
+      , ["0"] = 2, ["1"] = 2, ["2"] = 2, ["3"] = 2, ["4"] = 2, ["5"] = 2
+      , ["6"] = 2, ["7"] = 2, ["8"] = 2, ["9"] = 2
+
+      , ["."] = 4
+
+      , ["action"] = action.tk }
+
+
+State { ["id"] = 3 -- final state which recognizes subtraction op
+      , [">"] = 9
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 4 -- avoid invalid floating numbers
+      , ["0"] = 5, ["1"] = 5, ["2"] = 5, ["3"] = 5, ["4"] = 5, ["5"] = 5
+      , ["6"] = 5, ["7"] = 5, ["8"] = 5, ["9"] = 5
+
+      , ["action"] = action.err }
+
+State { ["id"] = 5 -- final state which recognizes real numbers
+      , ["0"] = 5, ["1"] = 5, ["2"] = 5, ["3"] = 5, ["4"] = 5, ["5"] = 5
+      , ["6"] = 5, ["7"] = 5, ["8"] = 5, ["9"] = 5
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 6 -- final state which recognizes simple ids
+      , ["a"] = 6, ["b"] = 6, ["c"] = 6, ["d"] = 6, ["e"] = 6, ["f"] = 6
+      , ["g"] = 6, ["h"] = 6, ["i"] = 6, ["j"] = 6, ["k"] = 6, ["l"] = 6
+      , ["m"] = 6, ["n"] = 6, ["o"] = 6, ["p"] = 6, ["q"] = 6, ["r"] = 6
+      , ["s"] = 6, ["t"] = 6, ["u"] = 6, ["v"] = 6, ["w"] = 6, ["x"] = 6
+      , ["y"] = 6, ["z"] = 6
+      , ["A"] = 6, ["B"] = 6, ["C"] = 6, ["D"] = 6, ["E"] = 6, ["F"] = 6
+      , ["G"] = 6, ["H"] = 6, ["I"] = 6, ["J"] = 6, ["K"] = 6, ["L"] = 6
+      , ["M"] = 6, ["N"] = 6, ["O"] = 6, ["P"] = 6, ["Q"] = 6, ["R"] = 6
+      , ["S"] = 6, ["T"] = 6, ["U"] = 6, ["V"] = 6, ["W"] = 6, ["X"] = 6
+      , ["Y"] = 6, ["Z"] = 6
+
+      , ["0"] = 6, ["1"] = 6, ["2"] = 6, ["3"] = 6, ["4"] = 6, ["5"] = 6
+      , ["6"] = 6, ["7"] = 6, ["8"] = 6, ["9"] = 6
+
+      , ["_"] = 6
+      , ["?"] = 8
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 7 -- ids which start with '_'
+      , ["a"] = 6, ["b"] = 6, ["c"] = 6, ["d"] = 6, ["e"] = 6, ["f"] = 6
+      , ["g"] = 6, ["h"] = 6, ["i"] = 6, ["j"] = 6, ["k"] = 6, ["l"] = 6
+      , ["m"] = 6, ["n"] = 6, ["o"] = 6, ["p"] = 6, ["q"] = 6, ["r"] = 6
+      , ["s"] = 6, ["t"] = 6, ["u"] = 6, ["v"] = 6, ["w"] = 6, ["x"] = 6
+      , ["y"] = 6, ["z"] = 6
+      , ["A"] = 6, ["B"] = 6, ["C"] = 6, ["D"] = 6, ["E"] = 6, ["F"] = 6
+      , ["G"] = 6, ["H"] = 6, ["I"] = 6, ["J"] = 6, ["K"] = 6, ["L"] = 6
+      , ["M"] = 6, ["N"] = 6, ["O"] = 6, ["P"] = 6, ["Q"] = 6, ["R"] = 6
+      , ["S"] = 6, ["T"] = 6, ["U"] = 6, ["V"] = 6, ["W"] = 6, ["X"] = 6
+      , ["Y"] = 6, ["Z"] = 6
+
+      , ["action"] = action.err }
+
+State { ["id"] = 8 -- final state which recognizes ids ending with '?"
+      , ["action"] = action.tk }
+
+State { ["id"] = 9 -- final state which recognizes type return indicator
+      , ["action"] = action.tk }
+
+State { ["id"] = 10 -- final state which recognizes less or equal op
+      , ["-"] = 11, ["="]  = 12
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 11 -- final state which recognizes assign op
+      , ["action"] = action.tk }
+
+State { ["id"] = 12 -- final state which recognizes less or equal op
+      , ["action"] = action.tk }
+
+State { ["id"] = 13 -- final state which recognizes not op
+      , ["="] = 14
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 14 -- final which recognizes not equal op
+      , ["action"] = action.tk }
+
+State { ["id"] = 15 -- final state which recognizes greater than op
+      , ["="] = 16
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 16 -- final state which recognizes greater or equal op
+      , ["action"] = action.tk }
+
+State { ["id"] = 17 -- final state wich recognizes addition operator
+      , ["action"] = action.tk }
+
+State { ["id"] = 18 -- final state wich recognizes multiplication operator
+      , ["action"] = action.tk }
+
+State { ["id"] = 19 -- final state wich recognizes division operator
+      , ["action"] = action.tk }
+
+State { ["id"] = 20 -- final state wich recognizes open paren
+      , ["action"] = action.tk }
+
+State { ["id"] = 21 -- final state wich recognizes close paren
+      , ["action"] = action.tk }
+
+State { ["id"] = 22 -- final state wich recognizes equality operator
+      , ["action"] = action.tk }
+
+State { ["id"] = 23 -- final state wich recognizes comma separator
+      , ["action"] = action.tk }
+
+State { ["id"] = 24 -- "dummy" state wich "eats" white spaces, except for lf
+      , ["\t"] = 24, [" "] = 24
+
+      , ["action"] = action.ws }
+
+State { ["id"] = 26 -- "dummy" state wich "eats" chars after comment mark
+      , ["action"] = action.cmnt }
+
+State { ["id"] = 27 -- dummy state which reads and adds char to a string literal
+      , ["\\"] = 28, ["\""] = 29
+
+      , ["action"] = action.str }
+
+State { ["id"] = 28 -- dummy state which garanties a scaped char
+      , ["action"] = action.str }
+
+State { ["id"] = 29 -- final state which recognizes a sting literal
+      , ["action"] = action.tk }
+
+State { ["id"] = 30 -- labels must have at least one alpha char
+      , ["a"] = 31, ["b"] = 31, ["c"] = 31, ["d"] = 31, ["e"] = 31, ["f"] = 31
+      , ["g"] = 31, ["h"] = 31, ["i"] = 31, ["j"] = 31, ["k"] = 31, ["l"] = 31
+      , ["m"] = 31, ["n"] = 31, ["o"] = 31, ["p"] = 31, ["q"] = 31, ["r"] = 31
+      , ["s"] = 31, ["t"] = 31, ["u"] = 31, ["v"] = 31, ["w"] = 31, ["x"] = 31
+      , ["y"] = 31, ["z"] = 31
+      , ["A"] = 31, ["B"] = 31, ["C"] = 31, ["D"] = 31, ["E"] = 31, ["F"] = 31
+      , ["G"] = 31, ["H"] = 31, ["I"] = 31, ["J"] = 31, ["K"] = 31, ["L"] = 31
+      , ["M"] = 31, ["N"] = 31, ["O"] = 31, ["P"] = 31, ["Q"] = 31, ["R"] = 31
+      , ["S"] = 31, ["T"] = 31, ["U"] = 31, ["V"] = 31, ["W"] = 31, ["X"] = 31
+      , ["Y"] = 31, ["Z"] = 31
+
+      , ["action"] = action.err }
+
+State { ["id"] = 31 -- final state which recognizes labels
+      , ["a"] = 31, ["b"] = 31, ["c"] = 31, ["d"] = 31, ["e"] = 31, ["f"] = 31
+      , ["g"] = 31, ["h"] = 31, ["i"] = 31, ["j"] = 31, ["k"] = 31, ["l"] = 31
+      , ["m"] = 31, ["n"] = 31, ["o"] = 31, ["p"] = 31, ["q"] = 31, ["r"] = 31
+      , ["s"] = 31, ["t"] = 31, ["u"] = 31, ["v"] = 31, ["w"] = 31, ["x"] = 31
+      , ["y"] = 31, ["z"] = 31
+      , ["A"] = 31, ["B"] = 31, ["C"] = 31, ["D"] = 31, ["E"] = 31, ["F"] = 31
+      , ["G"] = 31, ["H"] = 31, ["I"] = 31, ["J"] = 31, ["K"] = 31, ["L"] = 31
+      , ["M"] = 31, ["N"] = 31, ["O"] = 31, ["P"] = 31, ["Q"] = 31, ["R"] = 31
+      , ["S"] = 31, ["T"] = 31, ["U"] = 31, ["V"] = 31, ["W"] = 31, ["X"] = 31
+      , ["Y"] = 31, ["Z"] = 31
+
+      , ["0"] = 31, ["1"] = 31, ["2"] = 31, ["3"] = 31, ["4"] = 31, ["5"] = 31
+      , ["6"] = 31, ["7"] = 31, ["8"] = 31, ["9"] = 31
+
+      , ["_"] = 31
+      , ["?"] = 31
+
+      , ["action"] = action.tk }
+
+State { ["id"] = 32 -- final state wich recognizes linefeed separator
+      , ["action"] = action.tk }

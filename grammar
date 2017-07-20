@@ -1,0 +1,175 @@
+(* ISO/IEC 14977 : 1996(E) *)
+
+(** program main production *)
+program = gprefix, functions;
+gprefix = 'TK_FKW';
+
+(** functions and main body syntax *)
+functions = somefun, program;
+functions = main;
+
+(* any function that is not main *)
+somefun = id, parlst, 'TK_RETI', type, posfun;
+
+(* main function *)
+main = 'TK_MAIN', 'TK_RETI', type, posfun;
+
+(* function definition elements *)
+parlst  = 'TK_OP', facpl;
+facpl   = parms, 'TK_CP';
+facpl   = 'TK_CP';
+parms   = type, id, facparm;
+facparm = 'TK_CM', parms;
+facparm = E;
+
+(* funtion body *)
+posfun = stmts, 'TK_END';
+
+(** statements structure *)
+(* statements *)
+stmts  = stmt, 'TK_LF', stmts;
+stmts  = 'TK_LF', stmts;
+stmts  = return, 'TK_LF', stmts';
+stmts' = stmts;
+stmts' = E;
+
+stmt = fcorass;
+stmt = declare;
+stmt = input;
+stmt = output;
+stmt = jmp;
+stmt = label;
+stmt = preif;
+stmt = prefor;
+stmt = while;
+stmt = repeat;
+stmt = precase;
+
+(* free statements; like normal statements, but don't ensure a return *)
+fstmts   = fstmt, 'TK_LF', facfstmt;
+fstmts   = 'TK_LF', facfstmt;
+facfstmt = fstmts;
+facfstmt = E;
+
+fstmt = fcorass;
+fstmt = declare;
+fstmt = input;
+fstmt = output;
+fstmt = return;
+fstmt = jmp;
+fstmt = label;
+fstmt = preif;
+fstmt = prefor;
+fstmt = while;
+fstmt = repeat;
+fstmt = precase;
+
+(* assign or function call; prevent ambiguity *)
+fcorass = id, tailfoa;
+tailfoa = 'TK_ASS', expr; (* assign *)
+tailfoa = arglst;         (* function call *)
+
+(* variable declaration *)
+declare   = type, lstida;
+lstida    = headlida, faclstida;
+headlida  = id, taillida;
+taillida  = 'TK_ASS', expr;
+taillida  = E;
+faclstida = 'TK_CM', lstida;
+faclstida = E;
+
+(* I/O *)
+input  = 'TK_INP', 'TK_OP', id, 'TK_CP';
+output = 'TK_OUT', 'TK_OP', literal, 'TK_CP';
+
+(* return statement *)
+return = 'TK_RET', expr;
+
+(* inconditional diversion *)
+jmp   = 'TK_JMP', label;
+label = 'TK_LBL';
+
+(* conditional *)
+preif = 'TK_IF', expr, 'TK_THEN', fstmts, posif;
+posif = 'TK_ELSE', fstmts, 'TK_END';
+posif = 'TK_END';
+
+(* for loop *)
+prefor = 'TK_FOR', lvar, 'TK_CM', lvar, posfor;
+posfor = 'TK_CM', lvar, 'TK_DO', fstmts, 'TK_END';
+posfor = 'TK_DO', fstmts, 'TK_END';
+lvar   = id;
+lvar   = numb;
+
+(* while and repeat loops *)
+while  = 'TK_WHILE', expr, 'TK_DO', fstmts, 'TK_END';
+repeat = 'TK_REP', fstmts, 'TK_UNTIL', expr, 'TK_END';
+
+(* multiple selection *)
+precase = 'TK_CASE', id, whens, poscase;
+poscase = 'TK_ELSE', fstmts, 'TK_END';
+poscase = 'TK_END';
+whens   = when, facwhen;
+facwhen = whens;
+facwhen = E;
+when    = 'TK_WHEN', literal, 'TK_THEN', fstmts, 'TK_END';
+
+(** expression syntax *)
+(* general form *)
+expr  = headexpr, expr';
+expr  = 'TK_OP', expr, 'TK_CP', expr';
+expr  = uop, expr, expr';
+expr' = bop, expr, expr'
+expr' = E;
+
+(* common prefixes for all possible expressions *)
+headexpr = numb;
+headexpr = strg;
+headexpr = bool;
+headexpr = id, tailexpr;
+tailexpr = arglst;
+tailexpr = E;
+
+(* argument list; misc production that appears on function calls *)
+arglst  = 'TK_OP', facal;
+facal   = args, 'TK_CP';
+facal   = 'TK_CP';
+args    = literal, facargs;
+facargs = 'TK_CM', args;
+facargs = E;
+
+(** operators *)
+(* binary operators *)
+bop = 'TK_ADD';
+bop = 'TK_SUB';
+bop = 'TK_MUL';
+bop = 'TK_DIV';
+bop = 'TK_EQ';
+bop = 'TK_NE';
+bop = 'TK_LT';
+bop = 'TK_GT';
+bop = 'TK_LE';
+bop = 'TK_GE';
+bop = 'TK_AND';
+bop = 'TK_OR';
+
+(* unary operators *)
+uop = 'TK_SUB';
+uop = 'TK_NOT';
+
+(** basic elements *)
+(* literals *)
+literal = id;
+literal = numb;
+literal = strg;
+literal = bool;
+
+id   = 'TK_ID';
+numb = 'TK_NUMB';
+strg = 'TK_STRG';
+bool = 'TK_BOOL';
+
+(* type key words *)
+type = 'TK_TSTRG';
+type = 'TK_TNUMB';
+type = 'TK_TBOOL';
